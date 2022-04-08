@@ -1,10 +1,8 @@
 from sys import exit
-from os import get_terminal_size
 from math import cos, sin, pi
 from signal import signal, SIGINT
 
-gts = get_terminal_size()
-size = gts.columns > gts.lines and gts.lines or gts.columns
+size = 55
 luminance = ".,-~:;=!*#$@"
 theta_spacing = 0.07
 phi_spacing = 0.02
@@ -52,7 +50,10 @@ def draw(a: float, b: float):
                 luminance_index = int(l * 8)
                 output[x_p][y_p] = luminance[luminance_index]
 
-    print(*["".join(row) for row in output], sep="\n")
+    output_pretty = [[element for item in sublist for element in (item, item)] for sublist in output]
+
+    print("\033[H\033[J")
+    print(*["".join(row) for row in output_pretty], sep="\n")
 
 if __name__ == "__main__":
     print("\033[?1049h\033[?25l")
