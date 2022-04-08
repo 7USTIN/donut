@@ -12,7 +12,7 @@ k2 = 5
 k1 = size * k2 * 3 / (8 * (r1 + r2))
 
 def exit_script(*args):
-    print("\033[?1049l\033[?25h")
+    print("\033[?1049l\033[?25h\033[?7h")
     exit()
 
 def draw(a: float, b: float):
@@ -56,7 +56,7 @@ def draw(a: float, b: float):
     print(*["".join(row) for row in output_pretty], sep="\n")
 
 if __name__ == "__main__":
-    print("\033[?1049h\033[?25l")
+    print("\033[?1049h\033[?25l\033[?7l")
     signal(SIGINT, exit_script)
 
     while True:
